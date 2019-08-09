@@ -2,6 +2,20 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+const axios = require('axios');
+
+axios.get('https://api.github.com/users/OlgaCortez')
+.then(data => {
+  console.log('data: ', data);
+  const myInfo = data.data;
+  console.log('UserInfo: ', myInfo);
+
+
+
+  const cards = document.querySelector('.cards');
+  const cardInfo = cardCreator(myInfo);
+  cards.appendChild(cardInfo);
+})  
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -24,7 +38,24 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'
+];
+
+// followersArray.forEach(user => {
+//   axios.get(`https://api.github.com/users/${user}`)
+// .then (data => ({
+//   const card = cardCreator(data.data)
+//   const cards = document.querySelector('.cards')
+//   cards.appendChild(card)
+// })
+
+
+// })
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -45,6 +76,43 @@ const followersArray = [];
 </div>
 
 */
+
+const cards = document.querySelector('.cards');
+
+function createCards(data){
+
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const img = document.createElement('img');
+  img.classList.add('img');
+  img.src = imgUrl;
+
+  const cardInfo = document.createElement('div');
+  cardInfo.classList.add('cardInfo');
+
+  const name = document.createElement('h3');
+  name.classList.add('name');
+
+  const userName = document.createElement('p');
+  name.classList.add('userName');
+
+  const location = document.createElement('p');
+  location.classList.add('population');
+
+  const profile = document.createElement('https://api.github.com/users/${user}');
+  profile.classList.add('profile');
+  profile.src = profileUrl;
+
+  const followers = document.createElement('p');
+  followers.classList.add('followers');
+
+  const following = document.createElement('p');
+  following.classList.add('following');
+
+  const bio = document.createElement('p');
+  bio.classList.add('bio');
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
